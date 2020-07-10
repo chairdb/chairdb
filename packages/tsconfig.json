@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./chairdb-event" },
+    { "path": "./chairdb-log" },
+    { "path": "./chairdb-log-inmemory" },
+    { "path": "./chairdb-example-inventory" }
+  ]
+}

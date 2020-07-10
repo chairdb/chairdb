@@ -1,0 +1,17 @@
+{
+  "name": "@chairdb/example-inventory",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "repository": "git@github.com:chairdb/chairdb.git",
+  "author": "Thomas Toye <thomas@toye.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@chairdb/log": "0.0.0",
+    "@chairdb/log-inmemory": "0.0.0",
+    "@chairdb/event": "0.0.0"
+  }
+}

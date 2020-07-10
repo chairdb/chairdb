@@ -1,0 +1,11 @@
+{
+  "name": "@chairdb/event",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "repository": "git@github.com:chairdb/chairdb.git",
+  "author": "Thomas Toye <thomas@toye.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  }
+}
