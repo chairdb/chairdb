@@ -1,0 +1,32 @@
+steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+    - run: yarn install
+    - run: yarn build
+    - run: yarn test
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+        matrix:
+            node: [ '12', '13', '14' ]
+        name: Node.js ${{ matrix.node }}
+        steps:
+        - uses: actions/checkout@v2
+        - name: Setup node
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node }}        
+        - name: Cache node_modules and Firebase emulator
+          uses: actions/cache@master
+          with:
+            path: |
+              node_modules
+              */*/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+        - run: yarn install
+        - run: yarn build
+        - run: yarn test
