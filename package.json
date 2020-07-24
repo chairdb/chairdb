@@ -34,7 +34,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts}": [
+    "*.js": [
+      "eslint --ignore-path=.gitignore --fix",
+      "prettier --write"
+    ],
+    "*.ts": [
       "eslint --ignore-path=.gitignore --fix",
       "prettier --write"
     ],
