@@ -14,7 +14,7 @@
     "lint:fix": "eslint . --ignore-path=.gitignore --fix --ext .js,.ts,.json && yarn prettier --write",
     "prettier": "prettier '**/*.{js,ts}'",
     "build": "tsc --build packages",
-    "test": "lerna run test"
+    "test": "yarn run lint:check && lerna run test"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.6.0",
