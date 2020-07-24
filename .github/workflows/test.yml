@@ -17,8 +17,8 @@ jobs:
             node-version: ${{ matrix.node }}        
         - name: Cache node_modules and Firebase emulator
           uses: actions/cache@master
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
           with:
+            key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
             path: |
               node_modules
               */*/node_modules
