@@ -22,11 +22,11 @@ jobs:
             node-version: ${{ matrix.node }}        
         - name: Cache node_modules and Firebase emulator
           uses: actions/cache@master
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
           with:
             path: |
               node_modules
               */*/node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
         - run: yarn install
         - run: yarn build
         - run: yarn test
