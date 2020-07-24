@@ -34,8 +34,11 @@
     }
   },
   "lint-staged": {
-    "**/*.(js|ts|json)": [
+    "*.{js,ts}": [
       "eslint --ignore-path=.gitignore --fix",
+      "prettier --write"
+    ],
+    "*.json": [
       "prettier --write"
     ]
   }
