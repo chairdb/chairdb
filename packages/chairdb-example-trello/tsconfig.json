@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "composite": true
+  },
+  "references": [
+    { "path": "../chairdb-event" },
+    { "path": "../chairdb-log" },
+    { "path": "../chairdb-log-inmemory" }
+  ],
+  "extends": "../../tsconfig.json"
+}

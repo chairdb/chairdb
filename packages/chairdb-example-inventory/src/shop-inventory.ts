@@ -19,10 +19,6 @@ type BuyItemCommand = {
   amount: number;
 };
 
-type AuditItemCommand = {
-  name: string;
-};
-
 export class Item {
   #name: string;
   #amountInStock: number;
@@ -135,8 +131,8 @@ export class ShopInventory {
     });
   }
 
-  async auditItem(command: AuditItemCommand): Promise<readonly string[]> {
-    const events = await this.#log.allForAggregate(command.name);
+  async auditItem(itemName: string): Promise<readonly string[]> {
+    const events = await this.#log.allForAggregate(itemName);
 
     return events.map((event) => {
       return `${new Date(event.timestamp).toUTCString()} ${

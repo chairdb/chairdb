@@ -62,6 +62,6 @@ const reportStock = async (
 
   await reportStock(inventory, "Running shoes");
 
-  console.log(await inventory.auditItem({ name: "Running shoes" }));
-  console.log(await inventory.auditItem({ name: "Chocolate Bar" }));
+  console.log(await inventory.auditItem("Running shoes"));
+  console.log(await inventory.auditItem("Chocolate Bar"));
 })();

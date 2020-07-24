@@ -1,11 +1,11 @@
 /**
  * An immutable event with a payload of type T. Note that the payload should be JSON-serializable.
  */
-export type Event<T = unknown> = {
+export type Event<T = unknown, N = string> = {
   /**
    * Name of the event, e.g. 'WorkoutStarted', 'TradeExecuted'
    */
-  readonly name: string;
+  readonly name: N;
 
   /**
    * The actual event data
