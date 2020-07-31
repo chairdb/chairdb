@@ -4,6 +4,7 @@
     { "path": "./chairdb-event" },
     { "path": "./chairdb-log" },
     { "path": "./chairdb-log-inmemory" },
-    { "path": "./chairdb-example-inventory" }
+    { "path": "./chairdb-example-inventory" },
+    { "path": "./chairdb-config" }
   ]
 }

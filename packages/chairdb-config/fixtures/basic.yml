@@ -1,0 +1,24 @@
+chairdb: v1
+
+aggregates:
+    - InventoryItem
+    - Person
+    - MyAggregate
+
+events:
+    - name: BlahEvent
+      applicableTo:
+        - InventoryItem
+        - Person
+      payload:
+        newName:
+          type: string
+          required: true
+    - name: MyOtherEvent
+      applicableTo: MyAggregate
+      payload:
+        amount:
+          type: number
+          required: false
+        cashierName:
+            type: string
