@@ -1,11 +1,18 @@
-import { ChairDBConfigOnDisk } from "./parse-config";
-import { Either, left, right } from "fp-ts/lib/Either";
+import { ChairDBConfigOnDisk, parseConfig } from "./parse-config";
+import { Either, left, right, mapLeft, chain } from "fp-ts/lib/Either";
+import { pipe, flow } from "fp-ts/lib/function";
+import { parseYaml } from "./parse-yaml";
+import { PathReporter } from "io-ts/lib/PathReporter";
+import t from "io-ts";
 
 const CHAIRDB_CONF_VERSION = "v1";
 
 export class ChairDBConfigError extends Error {
-  constructor(m: string) {
+  inner?: Error | t.Errors;
+
+  constructor(m: string, inner?: Error | t.Errors) {
     super(m);
+    this.inner = inner;
     Object.setPrototypeOf(this, ChairDBConfigError.prototype);
   }
 }
@@ -15,6 +22,32 @@ export class Config {
 
   private constructor(conf: ChairDBConfigOnDisk) {
     this.#aggregates = conf.aggregates;
+  }
+
+  static fromYamlString(yaml: string): Either<ChairDBConfigError, Config> {
+    return pipe(
+      yaml,
+      parseYaml,
+      mapLeft(
+        (e) =>
+          new ChairDBConfigError(`Error in YAML configuration: ${e.message}`, e)
+      ),
+      chain(
+        flow(
+          parseConfig,
+          mapLeft(
+            (e) =>
+              new ChairDBConfigError(
+                `YAML was not valid according to the schema. ${PathReporter.report(
+                  left(e)
+                )}`,
+                e
+              )
+          )
+        )
+      ),
+      chain(Config.fromOnDiskConfig)
+    );
   }
 
   static fromOnDiskConfig(

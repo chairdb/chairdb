@@ -17,13 +17,19 @@ test("Valid YAML file", () => {
   const invalid = getFixture("basic.yml");
 
   expect(isRight(parseYaml(invalid))).toBeTruthy();
-  expect(getOrElse(() => new Error())(parseYaml(invalid)))
+  expect(getOrElse<Error, unknown>(() => null)(parseYaml(invalid)))
     .toMatchInlineSnapshot(`
     Object {
       "aggregates": Array [
-        "InventoryItem",
-        "Person",
-        "MyAggregate",
+        Object {
+          "name": "InventoryItem",
+        },
+        Object {
+          "name": "Person",
+        },
+        Object {
+          "name": "MyAggregate",
+        },
       ],
       "chairdb": "v1",
       "events": Array [

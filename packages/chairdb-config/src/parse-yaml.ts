@@ -8,7 +8,7 @@ import {
 } from "yaml/util";
 import { Either, left, right } from "fp-ts/lib/Either";
 
-export const parseYaml = (str: string): Either<unknown, YAMLError> => {
+export const parseYaml = (str: string): Either<YAMLError, unknown> => {
   try {
     const parsed = YAML.parse(str, { prettyErrors: true });
     return right(parsed);
